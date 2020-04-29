@@ -2,8 +2,12 @@
 
 namespace App\Entity;
 
+use App\Traits\GoalsTrait;
+
 class Team
 {
+	use GoalsTrait;
+
     private string $name;
     private string $country;
     private string $logo;
@@ -12,7 +16,6 @@ class Team
      */
     private array $players;
     private string $coach;
-    private int $goals;
 
     public function __construct(string $name, string $country, string $logo, array $players, string $coach)
     {
@@ -77,17 +80,6 @@ class Team
     {
         return $this->coach;
     }
-
-    public function addGoal(): void
-    {
-        $this->goals += 1;
-    }
-
-    public function getGoals(): int
-    {
-        return $this->goals;
-    }
-
 
     private function assertCorrectPlayers(array $players)
     {

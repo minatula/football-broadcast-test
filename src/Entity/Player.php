@@ -1,8 +1,13 @@
 <?php
+
 namespace App\Entity;
+
+use App\Traits\GoalsTrait;
 
 class Player
 {
+	use GoalsTrait;
+
     private const PLAY_PLAY_STATUS = 'play';
     private const BENCH_PLAY_STATUS = 'bench';
 
