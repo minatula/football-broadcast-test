@@ -119,12 +119,12 @@ class MatchBuilder
 				case 'yellowCard':
 					$team = $this->getTeamByName($match, $details['team']);
 					$player = $team->getPlayer($details['playerNumber']);
-					$player->addCard('yellow');
+					$player->addYellowCard();
 					break;
 				case 'redCard':
 					$team = $this->getTeamByName($match, $details['team']);
 					$player = $team->getPlayer($details['playerNumber']);
-					$player->addCard('red');
+					$player->addRedCard();
 					break;
 
             }

@@ -172,14 +172,17 @@
                                     <img src="https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/goal.png">
                                 {% endfor %}
                             {% endif %}
-                            {% if player.getCards('yellow') > 0 %}
-                                {% for i in range(1, player.getCards('yellow')) %}
+                            {% if player.yellowCards > 0 %}
+                                {% for i in range(1, player.yellowCards) %}
                                     {% if loop.index == 1 %}
                                         <img src="https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/card.png">
                                     {% else %}
                                         <img src="https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/yellow_red.png">
                                     {% endif %}
                                 {% endfor %}
+                            {% endif %}
+                            {% if player.redCards > 0 %}
+                                <img src="https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/red_card.png">
                             {% endif %}
                         </td>
                         <td>

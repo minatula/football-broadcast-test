@@ -16,7 +16,8 @@ class Player
     private string $playStatus;
     private int $inMinute;
     private int $outMinute;
-	private array $cards;
+    private int $yellowCards;
+    private int $redCards;
 	private string $position;
 
     public function __construct(int $number, string $name, string $position)
@@ -26,42 +27,33 @@ class Player
         $this->playStatus = self::BENCH_PLAY_STATUS;
         $this->inMinute = 0;
         $this->outMinute = 0;
-        $this->cards = [
-        	'yellow' => 0,
-        	'red' => 0,
-		];
+        $this->yellowCards = 0;
+        $this->redCards = 0;
 		$this->position = $position;
     }
 
-	/**
-	 * @param $color
-	 *
-	 * @return void
-	 */
-	public function addCard($color): void
+	public function addYellowCard(): void
 	{
-		$this->cards[$color] += 1;
+		if ($this->yellowCards < 2) {
+			$this->yellowCards += 1;
+		}
 	}
 
-	/**
-	 * @param $color
-	 *
-	 * @return int
-	 *
-	 * @throws \Exception
-	 */
-	public function getCards($color): int
+	public function getYellowCards(): int
 	{
-		if (isset($this->cards[$color])) {
-			return $this->cards[$color];
-		}
+		return $this->yellowCards;
+	}
 
-		throw new \Exception(
-			sprintf(
-				'Card with color "%d" doesn\'t exists.',
-				$color
-			)
-		);
+	public function addRedCard(): void
+	{
+		if ($this->redCards < 1) {
+			$this->redCards += 1;
+		}
+	}
+
+	public function getRedCards(): int
+	{
+		return $this->redCards;
 	}
 
     public function getNumber(): int
