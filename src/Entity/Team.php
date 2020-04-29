@@ -16,6 +16,10 @@ class Team
      */
     private array $players;
     private string $coach;
+	/**
+	 * @var Position[]
+	 */
+	private array $positions;
 
     public function __construct(string $name, string $country, string $logo, array $players, string $coach)
     {
@@ -27,7 +31,21 @@ class Team
         $this->players = $players;
         $this->coach = $coach;
         $this->goals = 0;
+		foreach (['В', 'З', 'П', 'Н'] as $positionName) {
+			$this->positions[] = new Position($positionName);
+		}
     }
+
+	public function countTotalPositionsTime()
+	{
+		foreach ($this->positions as $position) {
+			foreach ($this->players as $player) {
+				if ($position->getName() == $player->getPosition()) {
+					$position->increaseTotalTime($player->getPlayTime());
+				}
+			}
+		}
+	}
 
     public function getName(): string
     {
@@ -80,6 +98,28 @@ class Team
     {
         return $this->coach;
     }
+
+	public function getPositions()
+	{
+		return $this->positions;
+	}
+
+	public function getPosition(string $name): Position
+	{
+		foreach ($this->positions as $position) {
+			if ($position->getName() === $name) {
+				return $position;
+			}
+		}
+
+		throw new \Exception(
+			sprintf(
+				'Position with name "%d" not exists in team "%s".',
+				$name,
+				$this->name
+			)
+		);
+	}
 
     private function assertCorrectPlayers(array $players)
     {

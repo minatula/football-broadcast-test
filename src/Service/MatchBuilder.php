@@ -135,6 +135,9 @@ class MatchBuilder
                 $this->buildMessageType($event)
             );
         }
+
+        $match->getAwayTeam()->countTotalPositionsTime();
+        $match->getHomeTeam()->countTotalPositionsTime();
     }
 
     private function buildMinuteString(int $period, array $event): string
