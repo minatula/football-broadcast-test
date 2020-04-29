@@ -17,8 +17,9 @@ class Player
     private int $inMinute;
     private int $outMinute;
 	private array $cards;
+	private string $position;
 
-    public function __construct(int $number, string $name)
+    public function __construct(int $number, string $name, string $position)
     {
         $this->number = $number;
         $this->name = $name;
@@ -29,6 +30,7 @@ class Player
         	'yellow' => 0,
         	'red' => 0,
 		];
+		$this->position = $position;
     }
 
 	/**
@@ -95,6 +97,11 @@ class Player
 
         return $this->outMinute - $this->inMinute;
     }
+
+	public function getPosition(): string
+	{
+		return $this->position;
+	}
 
     public function goToPlay(int $minute): void
     {
